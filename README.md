@@ -11,5 +11,7 @@ React Query
 - - - - - - - -
 Prisma
 - - - - - - - -
+PostgreSQL
+- - - - - - - -
 Shadcn/ui
 ```
