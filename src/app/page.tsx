@@ -13,7 +13,7 @@ export default function Home() {
 					height={38}
 					priority
 				/>
-        <h1 className='bg-teal-400 '>Hello Tailwind</h1>
+				<h1 className='bg-teal-400 '>Hello Tailwind</h1>
 				<ol>
 					<li>
 						Get started by editing <code>src/app/page.tsx</code>.

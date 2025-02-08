@@ -10,10 +10,16 @@ const compat = new FlatCompat({
 })
 
 const eslintConfig = [
-	{
-		...compat.extends('next/core-web-vitals', 'next/typescript'),
-		ignores: ['**/tailwind.config.js'],
-	},
+	...compat.config({
+		extends: ['next/core-web-vitals', 'next/typescript'],
+		ignorePatterns: ['**/tailwind.config.js'],
+		rules: {
+			semi: ["error", "never"],
+			'no-unused-vars': 'error',
+			'prefer-const': ['error', { ignoreReadBeforeAssign: true }],
+			'@typescript-eslint/no-explicit-any': 'error',
+		},
+	}),
 ]
 
 export default eslintConfig
