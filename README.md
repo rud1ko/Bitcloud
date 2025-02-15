@@ -15,3 +15,11 @@ PostgreSQL
 - - - - - - - -
 Shadcn/ui
 ```
+
+## Команды
+
+```bash
+npm run dev - Запустить в дев окружении
+docker compose up - Поднять контейнер с бд
+npx prisma migrate dev --name some_message - Прокатить именованную миграцию
+```
