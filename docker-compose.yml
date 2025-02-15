@@ -4,9 +4,14 @@ services:
   main-db:
     image: postgres
     ports:
-      - 5432:5432
+      - 5435:5434
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=papamama1R
+      - POSTGRES_DB=bitcloud_db
+      - PGPORT=5434
     volumes:
+      - ./main-db:/var/lib/postgresql/data
+
+volumes:
+  main-db:
