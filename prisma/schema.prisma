@@ -19,3 +19,18 @@ model User {
   name  String
   password String
 }
+
+model Coin {
+  id String @id
+  rank String @unique
+  symbol String @unique
+  name String
+  supply String
+  maxSupply String?
+  marketCapUsd String
+  volumeUsd24Hr String
+  priceUsd String
+  changePercent24Hr String
+  vwap24Hr String?
+  explorer String?
+}
