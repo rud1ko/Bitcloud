@@ -1,5 +1,5 @@
-import { initialCoins } from '@/shared/consts/coins/initialCoins'
 import { PrismaClient } from '@prisma/client'
+import { initialCoins } from '@/globals/consts'
 
 const prisma = new PrismaClient()
 

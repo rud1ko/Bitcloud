@@ -1,6 +1,6 @@
-import { Coin } from '@/shared/types/coin'
+import { Coin } from '@/globals/consts/types/coin'
 
-export const initialCoins: Coin[] = [
+const initialCoins: Coin[] = [
 	{
 		id: 'bitcoin',
 		rank: '1',
@@ -1449,3 +1449,5 @@ export const initialCoins: Coin[] = [
 		explorer: 'https://explorer.thetatoken.org/',
 	},
 ]
+
+export { initialCoins }
