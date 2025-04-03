@@ -15,12 +15,17 @@ export default async function Home() {
 
 	return (
 		<div>
-			<Typography type={TypographyTypes.H1} title='HomePage' />
-			<Typography type={TypographyTypes.H2} title='HomePage' />
-			<Typography type={TypographyTypes.H3} title='HomePage' />
-			<Typography type={TypographyTypes.H4} title='HomePage' />
-			<Typography type={TypographyTypes.H5} title='HomePage' />
-			<Typography type={TypographyTypes.H6} title='HomePage' />
+			<Typography type={TypographyTypes.H1} title='HomePage' color='white' />
+			<Typography type={TypographyTypes.H2} title='HomePage' color='black' />
+			<Typography type={TypographyTypes.H3} title='HomePage' color='ghost' />
+			<Typography type={TypographyTypes.H4} title='HomePage' color='blur2' />
+			<Typography type={TypographyTypes.H5} title='HomePage' color='primary' />
+			<Typography
+				type={TypographyTypes.H6}
+				title='HomePage'
+				color='secondary'
+				weight='mid'
+			/>
 			<Typography type={TypographyTypes.TEXT} title='HomePage' />
 			<Button>Hello</Button>
 			{sortedData.map(el => (

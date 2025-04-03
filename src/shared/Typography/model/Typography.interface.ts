@@ -1,3 +1,5 @@
+import { ColorVariantsTypes } from '@/globals/consts/types/colors.types'
+
 export enum TypographyTypes {
 	H1 = 'h1',
 	H2 = 'h2',
@@ -11,5 +13,6 @@ export enum TypographyTypes {
 export interface TypographyProps {
 	type: TypographyTypes
 	title: string
-	color?: string
+	color?: keyof ColorVariantsTypes
+	weight?: 'reg' | 'mid' | 'bold'
 }
