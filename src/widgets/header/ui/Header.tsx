@@ -1,4 +1,5 @@
 import { Typography, TypographyTypes } from '@/shared/Typography'
+import { Button, buttonVariants } from '@/shared/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
 import logo from '../../../../public/logo-light.svg'
@@ -15,34 +16,60 @@ export const Header = () => {
 				<nav className='ml-[64px]'>
 					<ul className='flex'>
 						<li>
-							<Typography
-								title='Buy & Sell'
-								type={TypographyTypes.H6}
-								weight='mid'
-							/>
+							<Link
+								className={buttonVariants({ variant: 'ghost' })}
+								href={'/buyAndSell'}
+							>
+								<Typography
+									title='Buy & Sell'
+									type={TypographyTypes.H6}
+									weight='mid'
+								/>
+							</Link>
 						</li>
 						<li className='ml-[24px]'>
-							<Typography
-								title='Markets'
-								type={TypographyTypes.H6}
-								weight='mid'
-							/>
+							<Link
+								className={buttonVariants({ variant: 'ghost' })}
+								href={'/market'}
+							>
+								<Typography
+									title='Markets'
+									type={TypographyTypes.H6}
+									weight='mid'
+								/>
+							</Link>
 						</li>
 						<li className='ml-[24px]'>
-							<Typography
-								title='Blogs'
-								type={TypographyTypes.H6}
-								weight='mid'
-							/>
+							<Link
+								className={buttonVariants({ variant: 'ghost' })}
+								href={'/blog'}
+							>
+								<Typography
+									title='Blogs'
+									type={TypographyTypes.H6}
+									weight='mid'
+								/>
+							</Link>
 						</li>
 						<li className='ml-[24px]'>
-							<Typography title='FAQ' type={TypographyTypes.H6} weight='mid' />
+							<Link
+								className={buttonVariants({ variant: 'ghost' })}
+								href={'/faq'}
+							>
+								<Typography
+									title='FAQ'
+									type={TypographyTypes.H6}
+									weight='mid'
+								/>
+							</Link>
 						</li>
 					</ul>
 				</nav>
 			</div>
-			<div className='flex '>
-				<button>Wallet</button>
+			<div className='flex items-center'>
+				<Button variant='head' asChild>
+					<Link href={'/wallet'}>wallet</Link>
+				</Button>
 				<div className='ml-[13px]'>Author</div>
 			</div>
 		</header>

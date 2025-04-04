@@ -1,4 +1,5 @@
 import { dmSans, inter, notoSans } from '@/globals/css'
+import { Footer } from '@/widgets/footer/ui/Footer'
 import { Header } from '@/widgets/header/ui/Header'
 import type { Metadata } from 'next'
 import './globals.css'
@@ -18,8 +19,11 @@ export default function RootLayout({
 			<body
 				className={`${dmSans.variable} ${notoSans.variable} ${inter.variable}`}
 			>
-				<Header />
-				{children}
+				<div className='flex flex-col min-h-screen'>
+					<Header />
+					<main className='flex-grow bg-background-custom'>{children}</main>
+					<Footer />
+				</div>
 			</body>
 		</html>
 	)

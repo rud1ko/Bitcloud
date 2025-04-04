@@ -1,21 +1,18 @@
-import { db } from '@/globals/css/lib/db'
 import { Typography, TypographyTypes } from '@/shared/Typography'
 import { Button } from '@/shared/ui/button'
 
-export default async function Home() {
-	const coins = await db.coin.findMany()
-
-	const sortedData = [...coins].sort((a, b) => {
-		if (a.rank < b.rank) return -1
-		if (a.rank > b.rank) return 1
-		return 0
-	})
-
-	console.log(sortedData)
-
+export default function Home() {
 	return (
 		<div>
-			<Typography type={TypographyTypes.H1} title='HomePage' color='white' />
+			<Button variant={'default'}>Hello</Button>
+			<Button variant={'head'}>Hello</Button>
+			<Button variant='destructive'>Hello</Button>
+			<Button variant='secondary'>Hello</Button>
+			<Button variant='default'>Hello</Button>
+			<Button variant='primary'>Buy Crypto</Button>
+			<Button variant='outline'>Sell Crypto</Button>
+
+			<Typography type={TypographyTypes.H1} title='HomePage' />
 			<Typography type={TypographyTypes.H2} title='HomePage' color='black' />
 			<Typography type={TypographyTypes.H3} title='HomePage' color='ghost' />
 			<Typography type={TypographyTypes.H4} title='HomePage' color='blur2' />
@@ -27,10 +24,6 @@ export default async function Home() {
 				weight='mid'
 			/>
 			<Typography type={TypographyTypes.TEXT} title='HomePage' />
-			<Button>Hello</Button>
-			{sortedData.map(el => (
-				<h1 key={el.rank}>{el.name}</h1>
-			))}
 		</div>
 	)
 }

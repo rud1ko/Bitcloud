@@ -69,6 +69,10 @@ a {
 		--secondary-custom: #ff6f00;
 		--success: #58bd7d;
 		--ghost: #f1f3f2;
+		--background-custom: #fafafa;
+
+		/* My custom fonts */
+		--second-family: var(--second-family);
 	}
 	.dark {
 		--background: 240 10% 3.9%;
@@ -106,6 +110,10 @@ a {
 		--secondary-custom: #ff6f00;
 		--success: #58bd7d;
 		--ghost: #f1f3f2;
+		--background-custom: #fafafa;
+
+		/* My custom fonts */
+		--second-family: var(--second-family);
 	}
 }
 
