@@ -12,11 +12,15 @@ module.exports = {
 			fontFamily: {
 				second: 'var(--second-family)',
 			},
+			backgroundImage: {
+				auth: "url('/bg-login.png')",
+			},
 			colors: {
 				background: {
 					DEFAULT: 'hsl(var(--background))',
-					custom: 'var(--background-custom)'
-				} ,
+					custom: 'var(--background-custom)',
+					auth: 'var(--background-auth)'
+				},
 				foreground: 'hsl(var(--foreground))',
 				card: {
 					DEFAULT: 'hsl(var(--card))',

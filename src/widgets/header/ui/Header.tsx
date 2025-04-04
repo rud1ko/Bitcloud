@@ -66,11 +66,13 @@ export const Header = () => {
 					</ul>
 				</nav>
 			</div>
-			<div className='flex items-center'>
+			<div className='flex items-center gap-[13px]'>
 				<Button variant='head' asChild>
 					<Link href={'/wallet'}>wallet</Link>
 				</Button>
-				<div className='ml-[13px]'>Author</div>
+				<Button variant='head' asChild>
+					<Link href={'/signUp'}>SignUp</Link>
+				</Button>
 			</div>
 		</header>
 	)

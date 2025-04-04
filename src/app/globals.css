@@ -70,6 +70,7 @@ a {
 		--success: #58bd7d;
 		--ghost: #f1f3f2;
 		--background-custom: #fafafa;
+		--background-auth: #23262F;
 
 		/* My custom fonts */
 		--second-family: var(--second-family);
@@ -111,6 +112,7 @@ a {
 		--success: #58bd7d;
 		--ghost: #f1f3f2;
 		--background-custom: #fafafa;
+		--background-auth: #23262F;
 
 		/* My custom fonts */
 		--second-family: var(--second-family);
