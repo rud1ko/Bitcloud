@@ -5,6 +5,14 @@ const AuthorizedUserSchema = z.object({
 	password: z.string().min(1),
 })
 
+const NonAuthorizedUserSchema = z.object({
+	email: z.string().email(),
+	password: z.string().min(1),
+	name: z.string().refine(value => /^[A-Z]/.test(value), {
+		message: 'Имя должно начинаться с большой буквы',
+	}),
+})
+
 type Schema = z.infer<typeof AuthorizedUserSchema>
 
-export { AuthorizedUserSchema, type Schema }
+export { AuthorizedUserSchema, NonAuthorizedUserSchema,  type Schema }

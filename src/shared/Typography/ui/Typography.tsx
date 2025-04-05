@@ -14,6 +14,7 @@ const Typography = ({
 	title,
 	color = 'black',
 	weight = 'bold',
+	className,
 }: TypographyProps) => {
 	const BaseTypography = TypographyElements[type]
 	const sizeClass = TypographyStyles[type]
@@ -28,7 +29,7 @@ const Typography = ({
 
 	return (
 		<BaseTypography
-			className={cn(sizeClass, baseStyles.weight, baseStyles.color)}
+			className={cn(sizeClass, baseStyles.weight, baseStyles.color, className)}
 		>
 			{title}
 		</BaseTypography>

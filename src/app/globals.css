@@ -70,10 +70,14 @@ a {
 		--success: #58bd7d;
 		--ghost: #f1f3f2;
 		--background-custom: #fafafa;
-		--background-auth: #23262F;
+		--background-auth: #23262f;
+		--background-success: #58bd7d;
 
 		/* My custom fonts */
 		--second-family: var(--second-family);
+
+		/* My custom shadows */
+		--coin-card: 0 17px 40px 0 rgba(188, 179, 179, 0.25);
 	}
 	.dark {
 		--background: 240 10% 3.9%;
@@ -112,10 +116,14 @@ a {
 		--success: #58bd7d;
 		--ghost: #f1f3f2;
 		--background-custom: #fafafa;
-		--background-auth: #23262F;
+		--background-auth: #23262f;
+		--background-success: #58bd7d;
 
 		/* My custom fonts */
 		--second-family: var(--second-family);
+
+		/* My custom shadows */
+		--coin-card: 0 17px 40px 0 rgba(188, 179, 179, 0.25);
 	}
 }
 

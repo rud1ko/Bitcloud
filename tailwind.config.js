@@ -15,11 +15,18 @@ module.exports = {
 			backgroundImage: {
 				auth: "url('/bg-login.png')",
 			},
+			boxShadow: {
+				card: 'var(--coin-card)',
+			},
+			backgroundColor: {
+				success: 'var(--success)',
+			},
 			colors: {
 				background: {
 					DEFAULT: 'hsl(var(--background))',
 					custom: 'var(--background-custom)',
-					auth: 'var(--background-auth)'
+					auth: 'var(--background-auth)',
+					success: 'var(--background-success)',
 				},
 				foreground: 'hsl(var(--foreground))',
 				card: {
@@ -73,7 +80,7 @@ module.exports = {
 				},
 				blur1: 'var(--blur1)',
 				blur2: 'var(--blur2)',
-				success: 'hsl(var(--success))',
+				success: 'var(--success)',
 				ghost: 'var(--ghost)',
 			},
 		},

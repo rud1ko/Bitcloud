@@ -15,4 +15,5 @@ export interface TypographyProps {
 	title: string
 	color?: keyof ColorVariantsTypes
 	weight?: 'reg' | 'mid' | 'bold'
+	className?: string
 }
