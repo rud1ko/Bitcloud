@@ -6,11 +6,18 @@ import { InputWithLabelProps } from '../model/InputWithLabel.interface'
 export const InputWithLabel = React.forwardRef<
 	HTMLInputElement,
 	InputWithLabelProps
->(({ id, label, placeholder, type }, ref) => {
+>(({ id, label, placeholder, type, required }, ref) => {
 	return (
 		<div className='grid w-full max-w-sm items-center gap-1.5'>
 			<Label htmlFor={id}>{label}</Label>
-			<Input ref={ref} type={type} id={id} placeholder={placeholder} />
+			<Input
+				ref={ref}
+				type={type}
+				id={id}
+				placeholder={placeholder}
+				required={required}
+                name={id}
+			/>
 		</div>
 	)
 })

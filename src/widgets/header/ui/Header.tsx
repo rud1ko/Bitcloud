@@ -1,10 +1,14 @@
+import { authOptions } from '@/globals/config/auth'
 import { Typography, TypographyTypes } from '@/shared/Typography'
 import { Button, buttonVariants } from '@/shared/ui/button'
+import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import Link from 'next/link'
 import logo from '../../../../public/logo-light.svg'
 
-export const Header = () => {
+export const Header = async () => {
+	const session = await getServerSession(authOptions)
+
 	return (
 		<header className={'flex items-center justify-between p-[30px_78px]'}>
 			<div className='flex items-center'>
@@ -67,12 +71,25 @@ export const Header = () => {
 				</nav>
 			</div>
 			<div className='flex items-center gap-[13px]'>
-				<Button variant='head' asChild>
-					<Link href={'/wallet'}>wallet</Link>
-				</Button>
-				<Button variant='head' asChild>
-					<Link href={'/signUp'}>SignUp</Link>
-				</Button>
+				{session?.user ? (
+					<>
+						<Button variant='head' asChild>
+							<Link href={'/wallet'}>wallet</Link>
+						</Button>
+						<Button variant='head' asChild>
+							<Link href={'/profile'}>Profile</Link>
+						</Button>
+					</>
+				) : (
+					<>
+						<Button variant='head' asChild>
+							<Link href={'/signUp'}>SignUp</Link>
+						</Button>
+						<Button variant='head' asChild>
+							<Link href={'/signIn'}>SignIn</Link>
+						</Button>
+					</>
+				)}
 			</div>
 		</header>
 	)

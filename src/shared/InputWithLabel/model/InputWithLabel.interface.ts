@@ -5,4 +5,5 @@ export interface InputWithLabelProps {
 	placeholder: string
 	label: string
     type: HTMLInputTypeAttribute
+    required?: boolean
 }

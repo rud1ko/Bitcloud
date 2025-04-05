@@ -12,7 +12,7 @@ export const SignUpForm = () => {
 			/>
 			<InputWithLabel
 				label='Name'
-				placeholder='Nickname or first name'
+				placeholder='Nickname or firstname'
 				type='text'
 				id='name'
 			/>

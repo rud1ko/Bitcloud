@@ -26,8 +26,6 @@ const Typography = ({
 		[color]
 	)
 
-	console.log(baseStyles.color)
-
 	return (
 		<BaseTypography
 			className={cn(sizeClass, baseStyles.weight, baseStyles.color)}

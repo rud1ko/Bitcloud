@@ -1,7 +1,15 @@
+import { authOptions } from '@/globals/config/auth'
 import { Typography, TypographyTypes } from '@/shared/Typography'
 import { Button } from '@/shared/ui/button'
+import { getServerSession } from 'next-auth'
 
-export default function Home() {
+export default async function Home() {
+	const session = await getServerSession(authOptions)
+
+	console.log(session)
+
+	// if (!session) redirect("/signIn")
+
 	return (
 		<div>
 			<Button variant={'default'}>Hello</Button>
@@ -24,6 +32,7 @@ export default function Home() {
 				weight='mid'
 			/>
 			<Typography type={TypographyTypes.TEXT} title='HomePage' />
+			{session?.user?.name}
 		</div>
 	)
 }
