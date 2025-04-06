@@ -1,8 +1,9 @@
 'use client'
+import withAuthPage from '@/globals/hoc/withAuthPage'
 import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 
-export default function ProfilePage() {
+function ProfilePage() {
 	const session = useSession()
 
 	console.log(session)
@@ -17,3 +18,5 @@ export default function ProfilePage() {
 		</div>
 	)
 }
+
+export default withAuthPage(ProfilePage)

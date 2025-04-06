@@ -14,23 +14,24 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  name     String
   password String
+  balance  Float  @default(0)
 }
 
 model Coin {
-  id String @id
-  rank String @unique
-  symbol String @unique
-  name String
-  supply String
-  maxSupply String?
-  marketCapUsd String
-  volumeUsd24Hr String
-  priceUsd String
+  id                String  @id
+  rank              String  @unique
+  symbol            String  @unique
+  name              String
+  supply            String
+  maxSupply         String?
+  marketCapUsd      String
+  volumeUsd24Hr     String
+  priceUsd          String
   changePercent24Hr String
-  vwap24Hr String?
-  explorer String?
+  vwap24Hr          String?
+  explorer          String?
 }
