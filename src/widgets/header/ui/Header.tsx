@@ -1,13 +1,12 @@
-import { authOptions } from '@/globals/config/auth'
 import { Typography, TypographyTypes } from '@/shared/Typography'
 import { Button, buttonVariants } from '@/shared/ui/button'
-import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import Link from 'next/link'
 import logo from '../../../../public/logo-light.svg'
+import { auth } from '@/globals/config/auth'
 
 export const Header = async () => {
-	const session = await getServerSession(authOptions)
+	const session = await auth()
 
 	return (
 		<header className={'flex items-center justify-between p-[30px_78px]'}>

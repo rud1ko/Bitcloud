@@ -1,15 +1,14 @@
-import { authOptions } from '@/globals/config/auth'
+import { auth } from '@/globals/config/auth'
 import { cn } from '@/globals/css/lib/css'
 import { Typography, TypographyTypes } from '@/shared/Typography'
-import { Button, buttonVariants } from '@/shared/ui/button'
+import { buttonVariants } from '@/shared/ui/button'
 import { TopCoins } from '@/widgets/TopCoins'
-import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import Link from 'next/link'
 import moneyLogo from '../../../public/Money_landing.png'
 
 export default async function Home() {
-	const session = await getServerSession(authOptions)
+	const session = await auth()
 
 	return (
 		<div className='max-w-[1064px] m-[0_auto]'>

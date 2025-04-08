@@ -1,3 +1,4 @@
+import { AuthError } from 'next-auth'
 import { isRedirectError } from 'next/dist/client/components/redirect-error'
 
 type Options<T> = {
@@ -19,6 +20,15 @@ const executeAction = async <T>({
 	} catch (error) {
 		if (isRedirectError(error)) {
 			throw error
+		}
+
+		if (error instanceof AuthError) {
+			switch (error.type) {
+				case 'CredentialsSignin':
+					return { success: false, message: 'Invalid credentials!' }
+				default:
+					return { success: false, message: 'Something went wrong' }
+			}
 		}
 
 		return {

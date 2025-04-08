@@ -1,10 +1,14 @@
+import { getUserByEmail } from '@/entities/User/api/getUserByEmail'
 import { AuthorizedUserSchema } from '@/entities/User/lib/schema'
-import type { AuthOptions } from 'next-auth'
+import { PrismaAdapter } from '@auth/prisma-adapter'
+import bcrypt from 'bcryptjs'
+import NextAuth, { NextAuthConfig, User } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import GoogleProvider from 'next-auth/providers/google'
 import db from '../db/db'
 
-export const authOptions: AuthOptions = {
+const authOptions = {
+	adapter: PrismaAdapter(db),
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -19,23 +23,28 @@ export const authOptions: AuthOptions = {
 				console.log('credentials', credentials)
 				const validatedCredentials = AuthorizedUserSchema.parse(credentials)
 
-				const user = await db.user.findFirst({
-					where: {
-						email: validatedCredentials.email,
-						password: validatedCredentials.password,
-					},
-				})
+				const user = await getUserByEmail(validatedCredentials.email)
 
-				if (!user) {
+				if (!user || !user.password) {
 					throw new Error('Invalid credentials.')
 				}
 
-				return {
-					id: user.id.toString(),
-					email: user.email,
-					name: user.name,
-					balance: user.balance,
+				const passwordMatch = await bcrypt.compare(
+					validatedCredentials.password,
+					user.password
+				)
+
+				if (passwordMatch) {
+					console.log('balance', user.balance)
+					return {
+						id: user.id.toString(),
+						email: user.email,
+						name: user.name,
+						balance: user.balance,
+					} as User
 				}
+
+				return null
 			},
 		}),
 	],
@@ -57,7 +66,17 @@ export const authOptions: AuthOptions = {
 	// 		return session
 	// 	},
 	// },
+	session: { strategy: 'jwt' },
 	pages: {
 		signIn: '/signIn',
 	},
-}
+} satisfies NextAuthConfig
+
+export const {
+	auth,
+	handlers: { GET, POST },
+	signIn,
+	signOut,
+} = NextAuth(authOptions)
+
+export { authOptions }

@@ -6,4 +6,5 @@ export interface InputWithLabelProps {
 	label: string
     type: HTMLInputTypeAttribute
     required?: boolean
+    disable?: boolean
 }
