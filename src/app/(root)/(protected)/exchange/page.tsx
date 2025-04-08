@@ -1,7 +1,3 @@
-import withAuthPage from '@/globals/hoc/withAuthPage'
-
-function ExchangePage() {
+export default function ExchangePage() {
 	return <div>Exchange</div>
 }
-
-export default withAuthPage(ExchangePage)

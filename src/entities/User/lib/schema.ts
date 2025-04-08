@@ -17,12 +17,21 @@ const NonAuthorizedUserSchema = z.object({
 	}),
 })
 
+const ResetPasswordSchema = z.object({
+	email: z.string().email({ message: 'Email is required' }),
+	password: z.string().min(1, { message: 'Minimum 1 character' }),
+	confirmPassword: z.string().min(1, { message: 'Minimum 1 character' }),
+})
+
 type AuthorizedUserType = z.infer<typeof AuthorizedUserSchema>
 type NonAuthorizedUserType = z.infer<typeof NonAuthorizedUserSchema>
+type ResetPasswordType = z.infer<typeof ResetPasswordSchema>
 
 export {
 	AuthorizedUserSchema,
 	NonAuthorizedUserSchema,
+	ResetPasswordSchema,
 	type AuthorizedUserType,
 	type NonAuthorizedUserType,
+	type ResetPasswordType,
 }

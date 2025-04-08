@@ -15,7 +15,7 @@ const authOptions = {
 		async jwt({ token, user }) {
 			if (!token.sub) return token
 
-			const existingUser = await getUserById(parseInt(token.sub))
+			const existingUser = await getUserById(token.sub)
 
 			if (!existingUser) return token
 
@@ -70,7 +70,7 @@ const authOptions = {
 				if (passwordMatch) {
 					console.log('balance', user.balance)
 					return {
-						id: user.id.toString(),
+						id: user.id,
 						email: user.email,
 						name: user.name,
 						balance: user.balance,

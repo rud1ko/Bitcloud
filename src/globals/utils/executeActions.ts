@@ -31,6 +31,8 @@ const executeAction = async <T>({
 			}
 		}
 
+		console.log(error)
+
 		return {
 			success: false,
 			message: 'An error has occurred during executing the action',

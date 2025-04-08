@@ -1,6 +1,6 @@
 'use client'
-import { signIn } from '@/globals/config/auth'
 import { Button } from '@/shared/ui/button'
+import { signIn } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation'
 
 export const GoogleButton = () => {
@@ -10,8 +10,8 @@ export const GoogleButton = () => {
 	return (
 		<Button
 			variant={'primary'}
-			onClick={() => signIn('google', { redirectTo: callbackUrl })}
-            className='w-full'
+			onClick={() => signIn('google', { callbackUrl })}
+			className='w-full'
 		>
 			Google
 		</Button>

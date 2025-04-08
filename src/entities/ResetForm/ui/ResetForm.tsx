@@ -1,10 +1,10 @@
 'use client'
 
 import {
-	AuthorizedUserSchema,
-	AuthorizedUserType,
+	ResetPasswordSchema,
+	ResetPasswordType,
 } from '@/entities/User/lib/schema'
-import { login } from '@/globals/actions/login'
+import { reset } from '@/globals/actions/resetPassword'
 import { FormError } from '@/shared/FormResult/ui/FormError'
 import { FormSuccess } from '@/shared/FormResult/ui/FormSuccess'
 import { InputWithLabel } from '@/shared/InputWithLabel'
@@ -17,24 +17,22 @@ import {
 	FormMessage,
 } from '@/shared/ui/form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { GoogleButton } from './GoogleButton'
 
-export const SignInForm = () => {
+export const ResetForm = () => {
 	const [error, setError] = useState<string | undefined>('')
 	const [success, setSuccess] = useState<string | undefined>('')
 	const [isPending, startTransition] = useTransition()
 	const router = useRouter()
 
-	const form = useForm<AuthorizedUserType>({
-		resolver: zodResolver(AuthorizedUserSchema),
+	const form = useForm<ResetPasswordType>({
+		resolver: zodResolver(ResetPasswordSchema),
 		defaultValues: {
 			email: '',
 			password: '',
+			confirmPassword: '',
 		},
 	})
 
@@ -42,16 +40,16 @@ export const SignInForm = () => {
 		let timeout: NodeJS.Timeout
 		if (success) {
 			timeout = setTimeout(() => {
-				router.push('/')
+				router.push('/signIn')
 			}, 1500)
 		}
 
 		return () => clearTimeout(timeout)
 	}, [success])
 
-	const onSubmit = (values: z.infer<typeof AuthorizedUserSchema>) => {
+	const onSubmit = (values: ResetPasswordType) => {
 		startTransition(() => {
-			login(values).then(data => {
+			reset(values).then(data => {
 				if (data.error) return setError(data.error)
 				setSuccess(data.success)
 			})
@@ -60,9 +58,6 @@ export const SignInForm = () => {
 
 	return (
 		<>
-			<div className='max-w-[380px] w-full'>
-				<GoogleButton />
-			</div>
 			<Form {...form}>
 				<form
 					className='flex flex-col gap-[32px] mt-[32px] max-w-[380px] w-[100%]'
@@ -96,22 +91,34 @@ export const SignInForm = () => {
 								<FormControl>
 									<InputWithLabel
 										{...field}
-										label='Password'
-										placeholder='Password'
+										label='New password'
+										placeholder='****'
 										type='password'
-										id='password'
+										id='newPassword'
 										required
 										disable={isPending}
 									/>
 								</FormControl>
-								<Button
-									asChild
-									variant={'link'}
-									size={'sm'}
-									className='px-0'
-								>
-									<Link href={'/forgotPassword'}>Forgot password?</Link>
-								</Button>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name='confirmPassword'
+						render={({ field }) => (
+							<FormItem>
+								<FormControl>
+									<InputWithLabel
+										{...field}
+										label='Confirm password'
+										placeholder='*****'
+										type='password'
+										id='confirmPassword'
+										required
+										disable={isPending}
+									/>
+								</FormControl>
 								<FormMessage />
 							</FormItem>
 						)}
@@ -119,7 +126,7 @@ export const SignInForm = () => {
 					<FormError message={error} />
 					<FormSuccess message={success} />
 					<Button variant={'primary'} type='submit'>
-						Sign In
+						Reset
 					</Button>
 				</form>
 			</Form>

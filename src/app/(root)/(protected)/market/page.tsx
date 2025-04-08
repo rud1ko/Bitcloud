@@ -1,7 +1,3 @@
-import withAuthPage from '@/globals/hoc/withAuthPage'
-
-function MarketPage() {
+export default function MarketPage() {
 	return <div>Market</div>
 }
-
-export default withAuthPage(MarketPage)

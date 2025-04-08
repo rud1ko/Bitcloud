@@ -1,6 +1,6 @@
 import db from '@/globals/db/db'
 
-const getUserById = async (id: number) => {
+const getUserById = async (id: string) => {
 	try {
 		const user = await db.user.findUnique({ where: { id } })
 
