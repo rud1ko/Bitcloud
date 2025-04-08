@@ -1,7 +1,12 @@
-import { DefaultSession, User } from 'next-auth'
+import { DefaultSession } from 'next-auth'
+import { UserRole } from '@prisma/client'
 
-export interface CustomAuthUser extends User {
+export interface CustomAuthUser {
+	id: string
+	name: string
+	email: string
 	balance: number
+	role: UserRole
 }
 
 declare module 'next-auth' {

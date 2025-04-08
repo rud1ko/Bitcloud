@@ -1,4 +1,5 @@
 import { getUserByEmail } from '@/entities/User/api/getUserByEmail'
+import { getUserById } from '@/entities/User/api/getUserById'
 import { AuthorizedUserSchema } from '@/entities/User/lib/schema'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import bcrypt from 'bcryptjs'
@@ -6,9 +7,41 @@ import NextAuth, { NextAuthConfig, User } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import GoogleProvider from 'next-auth/providers/google'
 import db from '../db/db'
+import { UserRole } from '@prisma/client'
 
 const authOptions = {
 	adapter: PrismaAdapter(db),
+	callbacks: {
+		async jwt({ token, user }) {
+			if (!token.sub) return token
+
+			const existingUser = await getUserById(parseInt(token.sub))
+
+			if (!existingUser) return token
+
+			if (user) {
+				token.id = user.id
+				token.balance = user.balance
+				token.role = existingUser.role
+			}
+			return token
+		},
+		async session({ session, token }) {
+			if (token.sub && session.user) {
+				session.user.id = token.sub
+
+				if (typeof token.balance === 'number') {
+					session.user.balance = token.balance as number
+				}
+
+				if (token.role) {
+					session.user.role = token.role as UserRole
+				}
+			}
+
+			return session
+		},
+	},
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -48,24 +81,6 @@ const authOptions = {
 			},
 		}),
 	],
-	// callbacks: {
-	// 	async jwt({ token, user }) {
-	// 		// Если пользователь существует, добавляем его данные в токен
-	// 		if (user) {
-	// 			token.id = user.id
-	// 			token.balance = user.balance // Добавляем balance в токен
-	// 		}
-	// 		return token
-	// 	},
-	// 	async session({ session, token }) {
-	// 		// Добавляем данные из токена в сессию
-	// 		if (token) {
-	// 			session.user.id = token.id
-	// 			session.user.balance = token.balance // Добавляем balance в сессию
-	// 		}
-	// 		return session
-	// 	},
-	// },
 	session: { strategy: 'jwt' },
 	pages: {
 		signIn: '/signIn',
