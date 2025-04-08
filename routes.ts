@@ -23,3 +23,9 @@ export const apiAuthPrefix = '/api/auth'
  * @type {string}
  */
 export const DEFAULT_LOGIN_REDIRECT = '/profile'
+
+/**
+ * The route for users with admin role
+ * @type {string}
+ */
+export const adminPrefix = "/admin"

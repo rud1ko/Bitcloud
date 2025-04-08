@@ -1,6 +1,7 @@
 import { authOptions } from '@/globals/config/auth'
 import NextAuth from 'next-auth'
 import {
+	adminPrefix,
 	apiAuthPrefix,
 	authRoutes,
 	DEFAULT_LOGIN_REDIRECT,
@@ -14,11 +15,20 @@ export default middleware(req => {
 	const isLoggedIn = !!req.auth
 
 	const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix)
+	const isAdminRoute = nextUrl.pathname.startsWith(adminPrefix)
 	const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
 	const isAuthRoute = authRoutes.includes(nextUrl.pathname)
 
+	const role = req.auth?.user?.role
+
 	if (isApiAuthRoute) {
 		return
+	}
+
+	if (isAdminRoute) {
+		if (role !== "ADMIN") {
+			return Response.redirect(new URL('/', nextUrl))
+		}
 	}
 
 	if (isAuthRoute) {
