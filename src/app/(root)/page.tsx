@@ -3,12 +3,16 @@ import { cn } from '@/globals/css/lib/css'
 import { Typography, TypographyTypes } from '@/shared/Typography'
 import { buttonVariants } from '@/shared/ui/button'
 import { TopCoins } from '@/widgets/TopCoins'
+import { WebSocketSample } from '@/widgets/WebsoketSample'
 import Image from 'next/image'
 import Link from 'next/link'
 import moneyLogo from '../../../public/Money_landing.png'
 
 export default async function Home() {
 	const session = await auth()
+	// const coins = await updateAllCoins()
+
+	// console.log('Coins', coins.length)
 
 	return (
 		<div className='max-w-[1064px] m-[0_auto]'>

@@ -4,7 +4,8 @@ import {
 	AuthorizedUserSchema,
 	AuthorizedUserType,
 } from '@/entities/User/lib/schema'
-import { login } from '@/globals/actions/login'
+import { loginThunk } from '@/entities/User/model/login.thunk'
+import { useAppDispatch, useAppSelector } from '@/globals/redux/store'
 import { FormError } from '@/shared/FormResult/ui/FormError'
 import { FormSuccess } from '@/shared/FormResult/ui/FormSuccess'
 import { InputWithLabel } from '@/shared/InputWithLabel'
@@ -19,16 +20,14 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState, useTransition } from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 import { GoogleButton } from './GoogleButton'
 
 export const SignInForm = () => {
-	const [error, setError] = useState<string | undefined>('')
-	const [success, setSuccess] = useState<string | undefined>('')
-	const [isPending, startTransition] = useTransition()
 	const router = useRouter()
+	const dispatch = useAppDispatch()
+	const { success, status, error } = useAppSelector(state => state.user.request)
 
 	const form = useForm<AuthorizedUserType>({
 		resolver: zodResolver(AuthorizedUserSchema),
@@ -40,6 +39,7 @@ export const SignInForm = () => {
 
 	useEffect(() => {
 		let timeout: NodeJS.Timeout
+
 		if (success) {
 			timeout = setTimeout(() => {
 				router.push('/')
@@ -49,13 +49,8 @@ export const SignInForm = () => {
 		return () => clearTimeout(timeout)
 	}, [success])
 
-	const onSubmit = (values: z.infer<typeof AuthorizedUserSchema>) => {
-		startTransition(() => {
-			login(values).then(data => {
-				if (data.error) return setError(data.error)
-				setSuccess(data.success)
-			})
-		})
+	const onSubmit = async (values: AuthorizedUserType) => {
+		await dispatch(loginThunk(values)).unwrap()
 	}
 
 	return (
@@ -81,7 +76,7 @@ export const SignInForm = () => {
 										type='email'
 										id='email'
 										required
-										disable={isPending}
+										disable={status === 'pending'}
 									/>
 								</FormControl>
 								<FormMessage />
@@ -101,15 +96,10 @@ export const SignInForm = () => {
 										type='password'
 										id='password'
 										required
-										disable={isPending}
+										disable={status === 'pending'}
 									/>
 								</FormControl>
-								<Button
-									asChild
-									variant={'link'}
-									size={'sm'}
-									className='px-0'
-								>
+								<Button asChild variant={'link'} size={'sm'} className='px-0'>
 									<Link href={'/forgotPassword'}>Forgot password?</Link>
 								</Button>
 								<FormMessage />

@@ -5,7 +5,6 @@ import { EthereumIcon } from './Ethereum.icon'
 import { TetherIcon } from './Tether.icon'
 
 export const Icon: React.FC<{ title: string }> = ({ title }) => {
-	console.log(title)
 	switch (title) {
 		case 'bitcoin':
 			return <BitcoinIcon />

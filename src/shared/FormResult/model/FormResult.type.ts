@@ -1,3 +1,3 @@
 export interface FormResultProps {
-	message?: string
+	message: string | null | any
 }

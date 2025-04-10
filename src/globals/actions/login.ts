@@ -1,31 +1,30 @@
 'use server'
-import {
-	AuthorizedUserSchema,
-	AuthorizedUserType,
-} from '@/entities/User/lib/schema'
-import { executeAction } from '../utils/executeActions'
+import { getUserByEmail } from '@/entities/User/api/getUserByEmail'
+import { AuthorizedUserType } from '@/entities/User/lib/schema'
 import { signIn } from '../config/auth'
+import { executeAction } from '../utils/executeActions'
 
 async function login(values: AuthorizedUserType) {
-	const validatedParams = AuthorizedUserSchema.safeParse(values)
-
-	if (!validatedParams.success) {
-		return { error: 'Invalid fields' }
-	}
-
+	console.log('Values', values)
 	const res = await executeAction({
 		actionFn: async () => {
 			await signIn('credentials', {
-				email: validatedParams.data?.email,
-				password: validatedParams.data?.password,
+				email: values.email,
+				password: values.password,
 				redirect: false,
 			})
 		},
 		successMessage: 'Signed in successfully',
 	})
 
+	const existingUser = await getUserByEmail(values.email)
+
 	if (!res.success) {
 		return { error: res.message }
+	}
+
+	if (existingUser) {
+		return { success: res.message, user: existingUser }
 	}
 
 	return { success: res.message }

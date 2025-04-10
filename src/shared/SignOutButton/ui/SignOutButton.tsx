@@ -1,16 +1,20 @@
-import { signOut } from '@/globals/config/auth'
+'use client'
+import { resetUserState } from '@/entities/User/model/userSlice'
+import { useAppDispatch } from '@/globals/redux/store'
 import { Button } from '@/shared/ui/button'
+import { signOut } from 'next-auth/react'
 
-export const SignOutButton = async () => {
+export const SignOutButton = () => {
+	const dispatch = useAppDispatch()
+
+	const handleSignOut = async () => {
+		dispatch(resetUserState())
+		await signOut({ redirect: true, callbackUrl: '/' })
+	}
+
 	return (
-		<form
-			action={async () => {
-				'use server'
-
-				await signOut({ redirectTo: '/' })
-			}}
-		>
-			<Button variant={'primary'}>Sign Out</Button>
-		</form>
+		<Button onClick={handleSignOut} variant={'primary'}>
+			Sign Out
+		</Button>
 	)
 }

@@ -1,3 +1,5 @@
+'use client'
+import { useGetWebsocket } from '@/shared/hook/useGetWebscoket'
 import { Icon } from '@/shared/Icons/ui/Icon'
 import { Typography, TypographyTypes } from '@/shared/Typography'
 import { CardProps } from '../model/Card.interface'
@@ -10,6 +12,11 @@ export const Card: React.FC<CardProps> = ({
 	symbol,
 	vwap24Hr,
 }) => {
+	
+	const { message } = useGetWebsocket({
+		pathname: `prices?assets=${title}&apiKey=`,
+	})
+
 	return (
 		<div className='w-[215px] rounded-[10px] p-[16px_21px_20px_14px] hover:shadow-card transition duration-200'>
 			<div className='flex items-center justify-between'>
@@ -28,7 +35,10 @@ export const Card: React.FC<CardProps> = ({
 				/>
 			</div>
 			<div className='mt-[12px]'>
-				<Typography type={TypographyTypes.H5} title={`USD ${priceUsd}`} />
+				<Typography
+					type={TypographyTypes.H5}
+					title={`USD ${message?.[title] || priceUsd}`}
+				/>
 			</div>
 			<div className='mt-[8px] flex items-center justify-between'>
 				<Typography

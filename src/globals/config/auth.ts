@@ -68,7 +68,7 @@ const authOptions = {
 				)
 
 				if (passwordMatch) {
-					console.log('balance', user.balance)
+					console.log("User", user)
 					return {
 						id: user.id,
 						email: user.email,

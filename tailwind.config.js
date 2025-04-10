@@ -17,6 +17,7 @@ module.exports = {
 			},
 			boxShadow: {
 				card: 'var(--coin-card)',
+				trade: 'var(--trade-wrapper)'
 			},
 			backgroundColor: {
 				success: 'var(--success)',
