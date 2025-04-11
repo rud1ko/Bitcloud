@@ -4,20 +4,28 @@ module.exports = {
 	content: ['./src/**/*.{js,ts,jsx,tsx,mdx,css}'],
 	theme: {
 		extend: {
+			content: {
+				empty: '',
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)',
+			},
+			borderColor: {
+				active: 'var(--success)',
+				unactive: 'var(--trade-step-default-border)',
 			},
 			fontFamily: {
 				second: 'var(--second-family)',
 			},
 			backgroundImage: {
 				auth: "url('/bg-login.png')",
+				passed: "url('/Passed.svg')",
 			},
 			boxShadow: {
 				card: 'var(--coin-card)',
-				trade: 'var(--trade-wrapper)'
+				trade: 'var(--trade-wrapper)',
 			},
 			backgroundColor: {
 				success: 'var(--success)',
@@ -75,6 +83,9 @@ module.exports = {
 				},
 				black: {
 					custom: 'var(--black-custom)',
+				},
+				gray: {
+					custom: 'var(--gray-custom)'
 				},
 				dark: {
 					custom: 'var(--dark-custom)',

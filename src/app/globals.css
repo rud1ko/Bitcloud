@@ -72,6 +72,7 @@ a {
 		--background-custom: #fafafa;
 		--background-auth: #23262f;
 		--background-success: #58bd7d;
+		--gray-custom: #777E90;
 
 		/* My custom fonts */
 		--second-family: var(--second-family);
@@ -79,6 +80,9 @@ a {
 		/* My custom shadows */
 		--coin-card: 0 17px 40px 0 rgba(188, 179, 179, 0.25);
 		--trade-wrapper: 0px 64px 64px -48px rgba(15, 15, 15, 0.1);
+
+		/* My custom border color */
+		--trade-step-default-border: #777E90
 	}
 	.dark {
 		--background: 240 10% 3.9%;
@@ -119,6 +123,7 @@ a {
 		--background-custom: #fafafa;
 		--background-auth: #23262f;
 		--background-success: #58bd7d;
+		--gray-custom: #777E90;
 
 		/* My custom fonts */
 		--second-family: var(--second-family);
@@ -126,6 +131,9 @@ a {
 		/* My custom shadows */
 		--coin-card: 0 17px 40px 0 rgba(188, 179, 179, 0.25);
 		--trade-wrapper: 0px 64px 64px -48px rgba(15, 15, 15, 0.1);
+
+		/* My custom border color */
+		--trade-step-default-border: #777E90
 	}
 }
 

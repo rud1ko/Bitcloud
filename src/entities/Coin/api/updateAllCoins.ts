@@ -1,6 +1,6 @@
 import { Coin } from '@/globals/consts/types/coin'
 
-type UpdateAllCoins = {
+export type UpdateAllCoins = {
 	data: Coin[]
 }
 

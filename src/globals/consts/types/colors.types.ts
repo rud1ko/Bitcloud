@@ -8,6 +8,7 @@ interface ColorVariantsTypes {
 	secondary: string
 	success: string
 	ghost: string
+	gray: string
 }
 
 export { type ColorVariantsTypes }

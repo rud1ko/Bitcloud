@@ -10,6 +10,7 @@ const colorVariants: Record<keyof ColorVariantsTypes, string> = {
 	secondary: 'text-secondary-custom',
 	success: 'text-success',
 	ghost: 'text-ghost',
+	gray: 'text-gray-custom'
 }
 
 export { colorVariants }

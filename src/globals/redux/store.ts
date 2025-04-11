@@ -1,4 +1,5 @@
 import userReducer from '@/entities/User/model/userSlice'
+import tradeCryptoReducer from '@/widgets/TradeCryptoModule/model/tradeCryptoSlice'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { useDispatch, useSelector } from 'react-redux'
 import { persistReducer, persistStore } from 'redux-persist'
@@ -6,11 +7,13 @@ import storage from 'redux-persist/lib/storage'
 
 const rootReducer = combineReducers({
 	user: userReducer,
+    trade: tradeCryptoReducer
 })
 
 const persistConfig = {
 	key: 'root',
 	storage,
+    blacklist: ['trade'] 
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

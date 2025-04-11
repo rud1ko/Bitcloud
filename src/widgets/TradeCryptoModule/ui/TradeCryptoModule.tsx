@@ -1,10 +1,15 @@
+'use client'
+import { useAppSelector } from '@/globals/redux/store'
 import { TradeProcess } from '@/shared/TradeProcess'
+import { TradeCryptoSkin } from './TradeCryptoSkin'
 
 export const TradeCryptoModule = () => {
-	return <div className='flex mt-[64px]'>
-        <TradeProcess />
-        <div className='p-[40px] shadow-card'>
-            sell
-        </div>
-    </div>
+	const { activeStep } = useAppSelector(state => state.trade)
+
+	return (
+		<div className='flex mt-[64px]'>
+			<TradeProcess activeStep={activeStep} />
+			<TradeCryptoSkin activeStep={activeStep} />
+		</div>
+	)
 }
