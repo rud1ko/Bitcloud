@@ -55,9 +55,6 @@ export const SignInForm = () => {
 
 	return (
 		<>
-			<div className='max-w-[380px] w-full'>
-				<GoogleButton />
-			</div>
 			<Form {...form}>
 				<form
 					className='flex flex-col gap-[32px] mt-[32px] max-w-[380px] w-[100%]'

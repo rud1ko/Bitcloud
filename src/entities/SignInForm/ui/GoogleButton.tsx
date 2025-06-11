@@ -1,19 +1,17 @@
-'use client'
 import { Button } from '@/shared/ui/button'
-import { signIn } from 'next-auth/react'
-import { useSearchParams } from 'next/navigation'
+import { signIn } from '@/globals/config/auth'
 
 export const GoogleButton = () => {
-	const searchParams = useSearchParams()
-	const callbackUrl = searchParams.get('callbackUrl') || '/profile'
-
 	return (
-		<Button
-			variant={'primary'}
-			onClick={() => signIn('google', { callbackUrl })}
-			className='w-full'
+		<form
+			action={async () => {
+				'use server'
+				await signIn('google', { redirectTo: '/profile' })
+			}}
 		>
-			Google
-		</Button>
+			<Button variant={'primary'} className='w-full'>
+				Google
+			</Button>
+		</form>
 	)
 }

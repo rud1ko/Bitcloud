@@ -6,18 +6,21 @@ interface SelectedCrypto {
 	symbol: string
 }
 
+interface EnterAmount {
+	pay: string
+	receive: string
+}
+
 interface TradeCryptoModuleSlice {
 	activeStep: number
 	selectedCrypto: SelectedCrypto
+	enterAmount: EnterAmount
 }
 
 const initialState = {
 	activeStep: 1,
-	selectedCrypto: {
-		name: '',
-		price: '',
-		symbol: '',
-	},
+	selectedCrypto: {},
+	enterAmount: {},
 } as TradeCryptoModuleSlice
 
 export const tradeCryptoSlice = createSlice({
@@ -36,6 +39,15 @@ export const tradeCryptoSlice = createSlice({
 					},
 					activeStep: state.activeStep - 1,
 				}
+			} else if (activeStep === 3) {
+				return {
+					...state,
+					enterAmount: {
+						pay: '',
+						receive: '',
+					},
+					activeStep: state.activeStep - 1,
+				}
 			}
 			return { ...state, activeStep: state.activeStep - 1 }
 		},
@@ -45,10 +57,16 @@ export const tradeCryptoSlice = createSlice({
 			selectedCrypto: { ...action.payload },
 			activeStep: state.activeStep + 1,
 		}),
+		enterAmount: (state, action: PayloadAction<EnterAmount>) => ({
+			...state,
+			enterAmount: { ...action.payload },
+			activeStep: state.activeStep + 1,
+		}),
 	},
 })
 
 const tradeCryptoReducer = tradeCryptoSlice.reducer
 export { tradeCryptoReducer as default }
 
-export const { goBack, goNext, selectCrypto } = tradeCryptoSlice.actions
+export const { goBack, goNext, selectCrypto, enterAmount } =
+	tradeCryptoSlice.actions

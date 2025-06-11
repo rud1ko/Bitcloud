@@ -42,7 +42,7 @@ export const useGetWebsocket = ({ pathname }: GetWebsocketParams) => {
 			ws.onmessage = event => {
 				try {
 					const data = JSON.parse(event.data)
-					latestMessageRef.current = data // Сохраняем последнее сообщение
+					latestMessageRef.current = data
 				} catch (error) {
 					console.error('Error parsing WebSocket message:', error)
 				}

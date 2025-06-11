@@ -1,3 +1,4 @@
+import { GoogleButton } from '@/entities/SignInForm/ui/GoogleButton'
 import { SignInForm } from '@/entities/SignInForm/ui/SignInForm'
 import { Typography, TypographyTypes } from '@/shared/Typography'
 import Link from 'next/link'
@@ -18,6 +19,9 @@ const SignInPage = () => {
 			</div>
 			<div className='flex flex-col items-center p-[124px_48px_76px]'>
 				<Typography title='Sign in' type={TypographyTypes.H2} />
+				<div className='max-w-[380px] w-full'>
+					<GoogleButton />
+				</div>
 				<SignInForm />
 			</div>
 		</>

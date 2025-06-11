@@ -5,7 +5,6 @@ import { signIn } from '../config/auth'
 import { executeAction } from '../utils/executeActions'
 
 async function login(values: AuthorizedUserType) {
-	console.log('Values', values)
 	const res = await executeAction({
 		actionFn: async () => {
 			await signIn('credentials', {

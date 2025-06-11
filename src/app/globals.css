@@ -73,6 +73,7 @@ a {
 		--background-auth: #23262f;
 		--background-success: #58bd7d;
 		--gray-custom: #777E90;
+		--payment-category: #F4F5F6;
 
 		/* My custom fonts */
 		--second-family: var(--second-family);
@@ -124,6 +125,7 @@ a {
 		--background-auth: #23262f;
 		--background-success: #58bd7d;
 		--gray-custom: #777E90;
+		--payment-category: #F4F5F6;
 
 		/* My custom fonts */
 		--second-family: var(--second-family);

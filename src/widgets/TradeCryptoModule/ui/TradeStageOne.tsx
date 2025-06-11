@@ -61,7 +61,7 @@ export const TradeStageOne = () => {
 						<TableCell className='font-medium'>{coin.rank}</TableCell>
 						<TableCell className='flex items-center h-[64px] gap-1'>
 							<CryptoIcon symbol={coin.symbol} />
-							<Typography type={TypographyTypes.H6} title={coin.name} />
+							<Typography type={TypographyTypes.H6} title={coin.name} className='ml-[8px]'/>
 							<Typography
 								type={TypographyTypes.H6}
 								title={coin.symbol}

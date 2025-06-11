@@ -68,6 +68,9 @@ module.exports = {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))',
 				},
+				payment: {
+					category: 'var(--payment-category)',
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -85,7 +88,7 @@ module.exports = {
 					custom: 'var(--black-custom)',
 				},
 				gray: {
-					custom: 'var(--gray-custom)'
+					custom: 'var(--gray-custom)',
 				},
 				dark: {
 					custom: 'var(--dark-custom)',
