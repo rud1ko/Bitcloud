@@ -62,11 +62,14 @@ export const tradeCryptoSlice = createSlice({
 			enterAmount: { ...action.payload },
 			activeStep: state.activeStep + 1,
 		}),
+		resetTradeState: () => ({
+			...initialState
+		})
 	},
 })
 
 const tradeCryptoReducer = tradeCryptoSlice.reducer
 export { tradeCryptoReducer as default }
 
-export const { goBack, goNext, selectCrypto, enterAmount } =
+export const { goBack, goNext, selectCrypto, enterAmount, resetTradeState } =
 	tradeCryptoSlice.actions

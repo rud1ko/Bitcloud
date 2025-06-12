@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute } from 'react'
+import { ChangeEvent, HTMLInputTypeAttribute } from 'react'
 
 export interface InputWithLabelProps {
 	id: string
@@ -7,4 +7,6 @@ export interface InputWithLabelProps {
     type: HTMLInputTypeAttribute
     required?: boolean
     disable?: boolean
+    maxLength?: number
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }

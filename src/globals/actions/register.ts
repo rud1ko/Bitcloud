@@ -15,7 +15,7 @@ const register = async (values: NonAuthorizedUserType) => {
 		return { error: 'Invalid fields' }
 	}
 
-	const { password, email, name } = validatedParams.data
+	const { password, email, name, cardNumber, cardHolder, expirationDate, cvc } = validatedParams.data
 	const encryptedPassword = await bcrypt.hash(password, 10)
 
 	const existingUser = await getUserByEmail(email)
@@ -31,6 +31,15 @@ const register = async (values: NonAuthorizedUserType) => {
 					email,
 					password: encryptedPassword,
 					name,
+					card: {
+						create: {
+							cardNumber: cardNumber.replace(/\s/g, ''),
+							cardHolder,
+							expirationDate,
+							cvc,
+							balance: 0,
+						},
+					},
 				},
 			})
 		},

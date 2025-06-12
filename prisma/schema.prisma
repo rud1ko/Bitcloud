@@ -23,10 +23,12 @@ model User {
   email    String    @unique
   name     String
   password String
-  balance  Float     @default(0)
   role     UserRole  @default(USER)
+  card     Card?
   Account  Account[]
   Session  Session[]
+  transactions Transaction[]
+  balance_BTC Float    @default(0)
 }
 
 model Coin {
@@ -80,4 +82,28 @@ model VerificationRequest {
   updatedAt  DateTime @updatedAt
 
   @@unique([identifier, token])
+}
+
+model Card {
+  id            String   @id @default(cuid())
+  cardNumber    String   @unique
+  cardHolder    String
+  expirationDate String
+  cvc          String
+  balance      Float    @default(0)
+  userId       String   @unique
+  user         User     @relation(fields: [userId], references: [id])
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Transaction {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  amountUSD   Float
+  amountBTC   Float
+  serviceFee  Float    @default(0.000)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

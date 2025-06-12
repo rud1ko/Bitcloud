@@ -1,0 +1,18 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "balance_BTC" DOUBLE PRECISION NOT NULL DEFAULT 0;
+
+-- CreateTable
+CREATE TABLE "Transaction" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "amountUSD" DOUBLE PRECISION NOT NULL,
+    "amountBTC" DOUBLE PRECISION NOT NULL,
+    "serviceFee" DOUBLE PRECISION NOT NULL DEFAULT 0.000,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Transaction_pkey" PRIMARY KEY ("id")
+);
+
+-- AddForeignKey
+ALTER TABLE "Transaction" ADD CONSTRAINT "Transaction_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
