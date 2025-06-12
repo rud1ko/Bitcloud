@@ -1,5 +1,5 @@
 'use client'
-import { resetUserState } from '@/entities/User/model/userSlice'
+import { resetUserState } from '@/widgets/User/model/userSlice'
 import { useAppDispatch } from '@/globals/redux/store'
 import { Button } from '@/shared/ui/button'
 import { signOut } from 'next-auth/react'

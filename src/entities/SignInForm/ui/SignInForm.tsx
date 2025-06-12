@@ -4,7 +4,7 @@ import {
 	AuthorizedUserSchema,
 	AuthorizedUserType,
 } from '@/entities/User/lib/schema'
-import { loginThunk } from '@/entities/User/model/login.thunk'
+import { loginThunk } from '@/widgets/User/model/login.thunk'
 import { useAppDispatch, useAppSelector } from '@/globals/redux/store'
 import { FormError } from '@/shared/FormResult/ui/FormError'
 import { FormSuccess } from '@/shared/FormResult/ui/FormSuccess'
@@ -27,7 +27,12 @@ import { GoogleButton } from './GoogleButton'
 export const SignInForm = () => {
 	const router = useRouter()
 	const dispatch = useAppDispatch()
-	const { success, status, error } = useAppSelector(state => state.user.request)
+	const userState = useAppSelector(state => state.user)
+	const request = userState?.request || {
+		status: null,
+		success: null,
+		error: null
+	}
 
 	const form = useForm<AuthorizedUserType>({
 		resolver: zodResolver(AuthorizedUserSchema),
@@ -40,17 +45,22 @@ export const SignInForm = () => {
 	useEffect(() => {
 		let timeout: NodeJS.Timeout
 
-		if (success) {
+		if (request.success) {
 			timeout = setTimeout(() => {
-				router.push('/')
+				router.push('/profile')
 			}, 1500)
 		}
 
 		return () => clearTimeout(timeout)
-	}, [success])
+	}, [request.success, router])
 
 	const onSubmit = async (values: AuthorizedUserType) => {
-		await dispatch(loginThunk(values)).unwrap()
+		try {
+			await dispatch(loginThunk(values)).unwrap()
+		} catch (error) {
+			// Ошибка уже обрабатывается в userSlice
+			console.error('Login failed:', error)
+		}
 	}
 
 	return (
@@ -73,7 +83,7 @@ export const SignInForm = () => {
 										type='email'
 										id='email'
 										required
-										disable={status === 'pending'}
+										disable={request.status === 'pending'}
 									/>
 								</FormControl>
 								<FormMessage />
@@ -93,7 +103,7 @@ export const SignInForm = () => {
 										type='password'
 										id='password'
 										required
-										disable={status === 'pending'}
+										disable={request.status === 'pending'}
 									/>
 								</FormControl>
 								<Button asChild variant={'link'} size={'sm'} className='px-0'>
@@ -103,10 +113,14 @@ export const SignInForm = () => {
 							</FormItem>
 						)}
 					/>
-					<FormError message={error} />
-					<FormSuccess message={success} />
-					<Button variant={'primary'} type='submit'>
-						Sign In
+					<FormError message={request.error} />
+					<FormSuccess message={request.success} />
+					<Button 
+						variant={'primary'} 
+						type='submit'
+						disabled={request.status === 'pending'}
+					>
+						{request.status === 'pending' ? 'Signing in...' : 'Sign In'}
 					</Button>
 				</form>
 			</Form>
