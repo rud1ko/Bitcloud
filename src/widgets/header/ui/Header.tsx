@@ -80,9 +80,6 @@ export const Header = async () => {
 				{session?.user ? (
 					<>
 						<Button variant='head' asChild>
-							<Link href={'/wallet'}>wallet</Link>
-						</Button>
-						<Button variant='head' asChild>
 							<Link href={'/profile'}>Profile</Link>
 						</Button>
 					</>
