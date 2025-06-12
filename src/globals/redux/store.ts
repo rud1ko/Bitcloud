@@ -1,33 +1,34 @@
-import userReducer from '@/entities/User/model/userSlice'
-import tradeCryptoReducer from '@/widgets/TradeCryptoModule/model/tradeCryptoSlice'
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { useDispatch, useSelector } from 'react-redux'
-import { persistReducer, persistStore } from 'redux-persist'
+import { configureStore } from '@reduxjs/toolkit'
+import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-
-const rootReducer = combineReducers({
-	user: userReducer,
-    trade: tradeCryptoReducer
-})
+import { combineReducers } from 'redux'
+import userReducer from '@/widgets/User/model/userSlice'
+import tradeCryptoReducer from '@/widgets/TradeCryptoModule/model/tradeCryptoSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const persistConfig = {
 	key: 'root',
 	storage,
-    blacklist: ['trade'] 
 }
+
+const rootReducer = combineReducers({
+	user: userReducer,
+	trade: tradeCryptoReducer,
+})
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
 	reducer: persistedReducer,
-	middleware: getDefaultMiddleware =>
+	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({
 			serializableCheck: {
 				ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
 			},
 		}),
-	devTools: process.env.NODE_ENV !== 'production',
 })
+
+export const persistor = persistStore(store)
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

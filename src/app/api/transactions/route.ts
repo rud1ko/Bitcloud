@@ -81,4 +81,25 @@ export async function POST(req: Request) {
 		console.error('[TRANSACTIONS_POST]', error)
 		return new NextResponse('Internal error', { status: 500 })
 	}
+}
+
+export async function GET() {
+	try {
+		const session = await auth()
+		if (!session?.user) {
+			return new NextResponse('Unauthorized', { status: 401 })
+		}
+
+		const transactions = await db.transaction.findMany({
+			where: { userId: session.user.id },
+			orderBy: {
+				createdAt: 'desc'
+			}
+		})
+
+		return NextResponse.json(transactions)
+	} catch (error) {
+		console.error('[TRANSACTIONS_GET]', error)
+		return new NextResponse('Internal error', { status: 500 })
+	}
 } 

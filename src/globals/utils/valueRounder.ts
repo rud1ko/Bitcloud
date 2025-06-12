@@ -1,3 +1,4 @@
-export const valueRounder = (value: string, fix: number) => {
-	return parseFloat(value).toFixed(fix)
+export const valueRounder = (value: string | number, fix: number) => {
+	const numValue = typeof value === 'string' ? parseFloat(value) : value
+	return numValue.toFixed(fix)
 }

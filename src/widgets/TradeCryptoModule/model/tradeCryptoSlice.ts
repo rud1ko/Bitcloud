@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface SelectedCrypto {
+	id: string
 	name: string
 	price: string
 	symbol: string
@@ -19,8 +20,16 @@ interface TradeCryptoModuleSlice {
 
 const initialState = {
 	activeStep: 1,
-	selectedCrypto: {},
-	enterAmount: {},
+	selectedCrypto: {
+		id: '',
+		name: '',
+		price: '',
+		symbol: ''
+	},
+	enterAmount: {
+		pay: '',
+		receive: ''
+	},
 } as TradeCryptoModuleSlice
 
 export const tradeCryptoSlice = createSlice({
@@ -33,6 +42,7 @@ export const tradeCryptoSlice = createSlice({
 				return {
 					...state,
 					selectedCrypto: {
+						id: '',
 						name: '',
 						price: '',
 						symbol: '',

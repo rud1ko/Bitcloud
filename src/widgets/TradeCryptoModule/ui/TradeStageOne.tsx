@@ -29,6 +29,7 @@ export const TradeStageOne = () => {
 	const handleRowClick = (coin: Coin) => {
 		dispatch(
 			selectCrypto({
+				id: coin.id,
 				name: coin.name,
 				price: coin.priceUsd,
 				symbol: coin.symbol,

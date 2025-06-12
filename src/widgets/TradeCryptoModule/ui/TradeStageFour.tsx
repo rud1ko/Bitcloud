@@ -8,6 +8,10 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useCreateTransaction } from '@/widgets/TradeCryptoModule/api/useCreateTransaction'
+import { useComments } from '@/widgets/TradeCryptoModule/api/useComments'
+import { Textarea } from '@/shared/ui/textarea'
+import { format } from 'date-fns'
+import { Comment } from '@/shared/api/commentService'
 
 export const TradeStageFour = () => {
 	const dispatch = useAppDispatch()
@@ -16,6 +20,8 @@ export const TradeStageFour = () => {
 	const { enterAmount, selectedCrypto } = useAppSelector(state => state.trade)
 	const { mutate: createTransaction, isPending } = useCreateTransaction()
 	const [isTransactionCreated, setIsTransactionCreated] = useState(false)
+	const [comment, setComment] = useState('')
+	const { comments, isLoading: isLoadingComments, createComment, isCreating } = useComments(selectedCrypto.id)
 
 	useEffect(() => {
 		if (session?.user?.id && !isTransactionCreated) {
@@ -38,6 +44,16 @@ export const TradeStageFour = () => {
 	const handleGoHome = () => {
 		dispatch(resetTradeState())
 		router.push('/')
+	}
+
+	const handleSubmitComment = () => {
+		if (comment.trim()) {
+			createComment({
+				content: comment.trim(),
+				cryptoId: selectedCrypto.id
+			})
+			setComment('')
+		}
 	}
 
 	return (
@@ -66,6 +82,50 @@ export const TradeStageFour = () => {
 					</div>
 				</CardContent>
 			</Card>
+
+			<Card>
+				<CardHeader>
+					<CardTitle>Comments</CardTitle>
+					<CardDescription>
+						Share your experience with {selectedCrypto.name}
+					</CardDescription>
+				</CardHeader>
+				<CardContent className='space-y-4'>
+					{isLoadingComments ? (
+						<div>Loading comments...</div>
+					) : (
+						<div className='space-y-4'>
+							{comments?.map((comment: Comment) => (
+								<div key={comment.id} className='p-4 bg-muted rounded-lg'>
+									<div className='flex justify-between items-start mb-2'>
+										<span className='font-medium'>{comment.user.name}</span>
+										<span className='text-sm text-muted-foreground'>
+											{format(new Date(comment.createdAt), 'MMM d, yyyy HH:mm')}
+										</span>
+									</div>
+									<p className='text-sm'>{comment.content}</p>
+								</div>
+							))}
+						</div>
+					)}
+					<div className='space-y-2'>
+						<Textarea
+							placeholder='Share your experience...'
+							value={comment}
+							onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setComment(e.target.value)}
+							className='min-h-[100px]'
+						/>
+						<Button
+							variant='secondary'
+							onClick={handleSubmitComment}
+							disabled={!comment.trim() || isCreating}
+						>
+							{isCreating ? 'Posting...' : 'Post Comment'}
+						</Button>
+					</div>
+				</CardContent>
+			</Card>
+
 			<Button
 				variant='default'
 				className='w-full'
