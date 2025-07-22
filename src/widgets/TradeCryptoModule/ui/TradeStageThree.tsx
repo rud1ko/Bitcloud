@@ -1,5 +1,5 @@
 "use client"
-import { useAppSelector } from '@/globals/redux/store'
+import { useAppSelector } from '@/app/_lib'
 import { PaymentCategory } from '@/shared/PaymentCategory'
 import { Typography, TypographyTypes } from '@/shared/Typography'
 import visa from "../../../../public/card/visa.svg"

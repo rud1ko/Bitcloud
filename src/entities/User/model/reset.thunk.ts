@@ -1,4 +1,4 @@
-import { signOut } from '@/globals/config/auth'
+import { signOut } from '@/app/_lib'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 export const resetThunk = createAsyncThunk('user/signOut', async () => {

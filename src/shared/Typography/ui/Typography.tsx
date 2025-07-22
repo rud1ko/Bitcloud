@@ -1,6 +1,6 @@
 'use client'
-import { colorVariants } from '@/globals/consts'
-import { cn } from '@/globals/css/lib/css'
+import { cn } from '@/app/_lib'
+import { COLOR_VARIANTS } from '@/shared/constants'
 import { useMemo } from 'react'
 import {
 	TypographyElements,
@@ -8,6 +8,7 @@ import {
 } from '../consts/Typography.consts'
 import { weightVariants } from '../consts/weightVariants.consts'
 import { TypographyProps } from '../model/Typography.interface'
+import { TColorVariants } from '@/shared/model'
 
 const Typography = ({
 	type,
@@ -22,7 +23,7 @@ const Typography = ({
 	const baseStyles = useMemo(
 		() => ({
 			weight: weightVariants[weight],
-			color: colorVariants[color],
+			color: COLOR_VARIANTS[color],
 		}),
 		[color]
 	)

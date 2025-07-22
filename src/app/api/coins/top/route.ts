@@ -1,5 +1,5 @@
 import { UpdateAllCoins } from '@/entities/Coin/api/updateAllCoins'
-import db from '@/globals/db/db'
+import { db } from '@/app/_lib'
 
 export async function GET() {
 	try {

@@ -1,4 +1,3 @@
-import { authOptions } from '@/globals/config/auth'
 import NextAuth from 'next-auth'
 import {
 	adminPrefix,
@@ -7,6 +6,7 @@ import {
 	DEFAULT_LOGIN_REDIRECT,
 	publicRoutes,
 } from '../routes'
+import { authOptions } from './app/_lib'
 
 const { auth: middleware } = NextAuth(authOptions)
 

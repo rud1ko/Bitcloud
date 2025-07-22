@@ -1,5 +1,5 @@
 'use client'
-import { useAppSelector } from '@/globals/redux/store'
+import { useAppSelector } from '@/app/_lib'
 import { TradeProcess } from '@/shared/TradeProcess'
 import { TradeCryptoSkin } from './TradeCryptoSkin'
 

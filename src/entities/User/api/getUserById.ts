@@ -1,4 +1,4 @@
-import db from '@/globals/db/db'
+import { db } from '@/app/_lib'
 
 const getUserById = async (id: string) => {
 	try {

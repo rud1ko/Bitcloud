@@ -1,5 +1,5 @@
 'use client'
-import { useAppDispatch, useAppSelector } from '@/globals/redux/store'
+import { useAppDispatch, useAppSelector } from '@/app/_lib'
 import { Input } from '@/shared/Input'
 import { Typography, TypographyTypes } from '@/shared/Typography'
 import { Button } from '@/shared/ui/button'

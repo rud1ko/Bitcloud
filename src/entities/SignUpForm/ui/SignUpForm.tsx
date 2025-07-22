@@ -3,7 +3,7 @@ import {
 	NonAuthorizedUserSchema,
 	NonAuthorizedUserType,
 } from '@/entities/User/lib/schema'
-import { register } from '@/globals/actions/register'
+import { register } from '@/entities/User/actions'
 import { FormError } from '@/shared/FormResult/ui/FormError'
 import { FormSuccess } from '@/shared/FormResult/ui/FormSuccess'
 import { InputWithLabel } from '@/shared/InputWithLabel'

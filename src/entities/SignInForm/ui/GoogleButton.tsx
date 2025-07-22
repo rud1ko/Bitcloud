@@ -1,5 +1,5 @@
 import { Button } from '@/shared/ui/button'
-import { signIn } from '@/globals/config/auth'
+import { signIn } from '@/app/_lib'
 
 export const GoogleButton = () => {
 	return (

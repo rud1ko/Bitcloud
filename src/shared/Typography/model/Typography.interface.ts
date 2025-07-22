@@ -1,4 +1,4 @@
-import { ColorVariantsTypes } from '@/globals/consts/types/colors.types'
+import { TColorVariants } from '@/shared/model'
 
 export enum TypographyTypes {
 	H1 = 'h1',
@@ -13,7 +13,7 @@ export enum TypographyTypes {
 export interface TypographyProps {
 	type: TypographyTypes
 	title: string
-	color?: keyof ColorVariantsTypes
+	color?: keyof TColorVariants
 	weight?: 'reg' | 'mid' | 'bold'
 	className?: string
 }

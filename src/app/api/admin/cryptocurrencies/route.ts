@@ -1,4 +1,4 @@
-import db from '@/globals/db/db'
+import { db } from '@/app/_lib'
 import { NextResponse } from 'next/server'
 
 export async function GET() {

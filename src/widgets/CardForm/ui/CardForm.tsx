@@ -11,7 +11,7 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { useAppDispatch } from '@/globals/redux/store'
+import { useAppDispatch } from '@/app/_lib'
 import { goNext } from '@/widgets/TradeCryptoModule/model/tradeCryptoSlice'
 
 const cardSchema = z.object({

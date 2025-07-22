@@ -4,7 +4,7 @@ import {
 	ResetPasswordSchema,
 	ResetPasswordType,
 } from '@/entities/User/lib/schema'
-import { reset } from '@/globals/actions/resetPassword'
+import { reset } from '@/entities/User/actions'
 import { FormError } from '@/shared/FormResult/ui/FormError'
 import { FormSuccess } from '@/shared/FormResult/ui/FormSuccess'
 import { InputWithLabel } from '@/shared/InputWithLabel'

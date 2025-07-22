@@ -1,5 +1,5 @@
 'use client'
-import { useAppDispatch } from '@/globals/redux/store'
+import { useAppDispatch } from '@/app/_lib'
 import { CryptoIcon } from '@/shared/CryptoIcon/ui/CryptoIcon'
 import { Typography, TypographyTypes } from '@/shared/Typography'
 import { Button } from '@/shared/ui/button'

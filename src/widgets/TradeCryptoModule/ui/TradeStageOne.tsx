@@ -1,7 +1,7 @@
 'use client'
-import { useAppDispatch } from '@/globals/redux/store'
-import { valueRounder } from '@/globals/utils/valueRounder'
+import { useAppDispatch } from '@/app/_lib'
 import { CryptoIcon } from '@/shared/CryptoIcon/ui/CryptoIcon'
+import { valueRounder } from '@/shared/lib'
 import { Typography, TypographyTypes } from '@/shared/Typography'
 import {
 	Table,
@@ -62,7 +62,11 @@ export const TradeStageOne = () => {
 						<TableCell className='font-medium'>{coin.rank}</TableCell>
 						<TableCell className='flex items-center h-[64px] gap-1'>
 							<CryptoIcon symbol={coin.symbol} />
-							<Typography type={TypographyTypes.H6} title={coin.name} className='ml-[8px]'/>
+							<Typography
+								type={TypographyTypes.H6}
+								title={coin.name}
+								className='ml-[8px]'
+							/>
 							<Typography
 								type={TypographyTypes.H6}
 								title={coin.symbol}

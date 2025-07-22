@@ -1,6 +1,6 @@
 'use client'
 
-import { useAppSelector } from '@/globals/redux/store'
+import { useAppSelector } from '@/app/_lib'
 import { TradeProcessMock } from '@/shared/TradeProcess/const/TradeProcessMock.const'
 import { Typography, TypographyTypes } from '@/shared/Typography'
 import { useMemo } from 'react'

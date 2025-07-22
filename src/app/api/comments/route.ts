@@ -1,6 +1,5 @@
+import { auth, db } from '@/app/_lib'
 import { NextResponse } from 'next/server'
-import db from '@/globals/db/db'
-import { auth } from '@/globals/config/auth'
 
 export async function GET(req: Request) {
 	try {
@@ -16,13 +15,13 @@ export async function GET(req: Request) {
 			include: {
 				user: {
 					select: {
-						name: true
-					}
-				}
+						name: true,
+					},
+				},
 			},
 			orderBy: {
-				createdAt: 'desc'
-			}
+				createdAt: 'desc',
+			},
 		})
 
 		return NextResponse.json(comments)
@@ -35,10 +34,10 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
 	try {
 		console.log('[COMMENTS_POST] Starting comment creation...')
-		
+
 		const session = await auth()
 		console.log('[COMMENTS_POST] Session:', session)
-		
+
 		if (!session?.user) {
 			console.log('[COMMENTS_POST] No user session found')
 			return new NextResponse('Unauthorized', { status: 401 })
@@ -46,17 +45,22 @@ export async function POST(req: Request) {
 
 		const body = await req.json()
 		console.log('[COMMENTS_POST] Request body:', body)
-		
+
 		const { content, cryptoId } = body
 
 		if (!content || !cryptoId) {
-			console.log('[COMMENTS_POST] Missing required fields:', { content, cryptoId })
-			return new NextResponse('Content and cryptoId are required', { status: 400 })
+			console.log('[COMMENTS_POST] Missing required fields:', {
+				content,
+				cryptoId,
+			})
+			return new NextResponse('Content and cryptoId are required', {
+				status: 400,
+			})
 		}
 
 		// Check if the coin exists
 		const coin = await db.coin.findUnique({
-			where: { id: cryptoId }
+			where: { id: cryptoId },
 		})
 
 		if (!coin) {
@@ -67,22 +71,22 @@ export async function POST(req: Request) {
 		console.log('[COMMENTS_POST] Creating comment with data:', {
 			userId: session.user.id,
 			cryptoId,
-			content
+			content,
 		})
 
 		const comment = await db.comment.create({
 			data: {
 				userId: session.user.id,
 				cryptoId,
-				content
+				content,
 			},
 			include: {
 				user: {
 					select: {
-						name: true
-					}
-				}
-			}
+						name: true,
+					},
+				},
+			},
 		})
 
 		console.log('[COMMENTS_POST] Comment created successfully:', comment)
@@ -91,4 +95,4 @@ export async function POST(req: Request) {
 		console.error('[COMMENTS_POST] Error details:', error)
 		return new NextResponse('Internal error', { status: 500 })
 	}
-} 
+}

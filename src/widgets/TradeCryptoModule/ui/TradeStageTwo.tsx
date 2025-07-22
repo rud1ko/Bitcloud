@@ -1,5 +1,5 @@
-import { useAppSelector } from '@/globals/redux/store'
-import { valueRounder } from '@/globals/utils/valueRounder'
+import { useAppSelector } from '@/app/_lib'
+import { valueRounder } from '@/shared/lib'
 import { Typography, TypographyTypes } from '@/shared/Typography'
 import { TradeForm } from '@/widgets/TradeForm/ui/TradeForm'
 

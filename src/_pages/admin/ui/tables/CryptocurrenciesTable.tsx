@@ -12,7 +12,7 @@ import {
 import { Button } from '@/shared/ui/button'
 import { useDeleteCryptocurrency } from '../../api/useDeleteCryptocurrency'
 import { useQuery } from '@tanstack/react-query'
-import { getCryptocurrencies } from '../../api/getCryptocurrencies'
+import { ADMIN_API } from '../../api'
 
 interface Cryptocurrency {
   id: string
@@ -30,7 +30,7 @@ export function CryptocurrenciesTable() {
 
   const { data: cryptocurrencies = [], isLoading } = useQuery<Cryptocurrency[]>({
     queryKey: ['cryptocurrencies'],
-    queryFn: getCryptocurrencies,
+    queryFn: ADMIN_API.getCryptocurrencies,
   })
 
   const handleDelete = (id: string) => {

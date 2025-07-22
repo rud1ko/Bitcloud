@@ -1,4 +1,4 @@
-import { login } from '@/globals/actions/login'
+import { login } from '@/entities/User/actions'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AuthorizedUserSchema, AuthorizedUserType } from '@/entities/User/lib/schema'
 import { signIn } from 'next-auth/react'

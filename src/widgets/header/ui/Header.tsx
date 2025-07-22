@@ -1,5 +1,5 @@
 import { getCurrentRole } from '@/entities/User/api/getCurrentRole'
-import { auth } from '@/globals/config/auth'
+import { auth } from '@/app/_lib'
 import { Typography, TypographyTypes } from '@/shared/Typography'
 import { Button, buttonVariants } from '@/shared/ui/button'
 import Image from 'next/image'

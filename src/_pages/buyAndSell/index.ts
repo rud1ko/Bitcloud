@@ -1,1 +1,1 @@
-export * from './ui/buyAndSell'
+export { BuyAndSellPage } from './ui'

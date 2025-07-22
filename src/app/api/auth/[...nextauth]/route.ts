@@ -1,1 +1,1 @@
-export { GET, POST } from '@/globals/config/auth'
+export { GET, POST } from '@/app/_lib'

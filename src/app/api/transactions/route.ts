@@ -1,6 +1,5 @@
+import { auth, db } from '@/app/_lib'
 import { NextResponse } from 'next/server'
-import db from '@/globals/db/db'
-import { auth } from '@/globals/config/auth'
 
 export async function POST(req: Request) {
 	try {
@@ -22,7 +21,7 @@ export async function POST(req: Request) {
 		// Get user's card
 		const userCard = await db.card.findUnique({
 			where: { userId: session.user.id },
-			select: { balance: true }
+			select: { balance: true },
 		})
 
 		if (!userCard) {
@@ -59,7 +58,7 @@ export async function POST(req: Request) {
 
 		console.log('New balances will be:', {
 			BTC: newBTCBalance,
-			Card: newCardBalance
+			Card: newCardBalance,
 		})
 
 		// Update user BTC balance and card balance
@@ -71,7 +70,7 @@ export async function POST(req: Request) {
 			db.card.update({
 				where: { userId: session.user.id },
 				data: { balance: newCardBalance },
-			})
+			}),
 		])
 
 		console.log('Balances updated')
@@ -93,8 +92,8 @@ export async function GET() {
 		const transactions = await db.transaction.findMany({
 			where: { userId: session.user.id },
 			orderBy: {
-				createdAt: 'desc'
-			}
+				createdAt: 'desc',
+			},
 		})
 
 		return NextResponse.json(transactions)
@@ -102,4 +101,4 @@ export async function GET() {
 		console.error('[TRANSACTIONS_GET]', error)
 		return new NextResponse('Internal error', { status: 500 })
 	}
-} 
+}

@@ -1,4 +1,4 @@
-import { Coin } from '@/globals/consts/types/coin'
+import { Coin } from '../model'
 
 export type UpdateAllCoins = {
 	data: Coin[]

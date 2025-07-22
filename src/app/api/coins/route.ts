@@ -1,5 +1,5 @@
-import db from '@/globals/db/db'
 import { NextRequest } from 'next/server'
+import { db } from '@/app/_lib'
 
 export async function GET(request: NextRequest) {
 	const searchParams = request.nextUrl.searchParams

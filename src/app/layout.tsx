@@ -1,5 +1,5 @@
-import { dmSans, inter, notoSans } from '@/globals/css'
-import { AppSessionProvider } from '@/globals/providers/AppSessionProvider'
+import { dmSans, notoSans, inter } from './_lib'
+import { AppProvider } from './_providers'
 import type { Metadata } from 'next'
 import './globals.css'
 
@@ -18,7 +18,7 @@ export default function RootLayout({
 			<body
 				className={`${dmSans.variable} ${notoSans.variable} ${inter.variable}`}
 			>
-				<AppSessionProvider>{children}</AppSessionProvider>
+				<AppProvider>{children}</AppProvider>
 			</body>
 		</html>
 	)

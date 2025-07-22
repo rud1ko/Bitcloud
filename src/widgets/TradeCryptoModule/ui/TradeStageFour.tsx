@@ -2,7 +2,7 @@
 import { Button } from '@/shared/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/shared/ui/card'
 import { Separator } from '@/shared/ui/separator'
-import { useAppDispatch, useAppSelector } from '@/globals/redux/store'
+import { useAppDispatch, useAppSelector } from '@/app/_lib'
 import { resetTradeState } from '@/widgets/TradeCryptoModule/model/tradeCryptoSlice'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'

@@ -22,4 +22,4 @@ export function useDeleteTransaction() {
       toast.error(error.message || 'Failed to delete transaction')
     },
   })
-} 
+}

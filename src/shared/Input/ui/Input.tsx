@@ -1,4 +1,4 @@
-import { cn } from '@/globals/css/lib/css'
+import { cn } from '@/app/_lib'
 import * as React from 'react'
 
 const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<'input'>>(

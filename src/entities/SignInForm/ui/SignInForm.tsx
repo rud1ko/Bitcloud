@@ -5,7 +5,7 @@ import {
 	AuthorizedUserType,
 } from '@/entities/User/lib/schema'
 import { loginThunk } from '@/widgets/User/model/login.thunk'
-import { useAppDispatch, useAppSelector } from '@/globals/redux/store'
+import { useAppDispatch, useAppSelector } from '@/app/_lib'
 import { FormError } from '@/shared/FormResult/ui/FormError'
 import { FormSuccess } from '@/shared/FormResult/ui/FormSuccess'
 import { InputWithLabel } from '@/shared/InputWithLabel'

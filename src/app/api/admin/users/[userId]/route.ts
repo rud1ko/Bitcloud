@@ -1,5 +1,5 @@
-import db from '@/globals/db/db'
 import { NextResponse } from 'next/server'
+import { db } from '@/app/_lib'
 
 export async function PATCH(
   request: Request,
